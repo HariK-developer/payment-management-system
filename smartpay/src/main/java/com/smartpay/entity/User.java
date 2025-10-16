@@ -1,4 +1,4 @@
-package com.smartpay.smartpay.entity;
+package com.smartpay.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;

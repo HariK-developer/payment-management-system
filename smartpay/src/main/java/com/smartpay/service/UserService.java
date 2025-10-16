@@ -1,7 +1,7 @@
-package com.smartpay.smartpay.service;
+package com.smartpay.service;
 
-import com.smartpay.smartpay.entity.User;
-import com.smartpay.smartpay.repository.UserRepository;
+import com.smartpay.entity.User;
+import com.smartpay.repository.UserRepository;
 import org.springframework.stereotype.Service;
 import java.util.List;
 

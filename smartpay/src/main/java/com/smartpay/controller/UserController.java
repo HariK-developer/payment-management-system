@@ -1,7 +1,7 @@
-package com.smartpay.smartpay.controller;
+package com.smartpay.controller;
 
-import com.smartpay.smartpay.entity.User;
-import com.smartpay.smartpay.service.UserService;
+import com.smartpay.entity.User;
+import com.smartpay.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;

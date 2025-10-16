@@ -1,4 +1,4 @@
-package com.smartpay.smartpay.exception;
+package com.smartpay.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
