@@ -1,5 +1,6 @@
 package com.smartpay.service;
 
+import com.smartpay.dto.ApiResponse;
 import com.smartpay.entity.User;
 import com.smartpay.repository.UserRepository;
 import org.springframework.stereotype.Service;
@@ -17,9 +18,11 @@ public class UserService {
         return userRepo.findAll();
     }
 
-    public User create (User user) {
-        if (userRepo.existsByEmail(user.getEmail()))
-            throw new RuntimeException("Email already registered" );
+    public User create(User user) {
+        if (userRepo.existsByEmail(user.getEmail())) {
+            throw new RuntimeException("Email already registered");
+        }
         return userRepo.save(user);
     }
+
 }

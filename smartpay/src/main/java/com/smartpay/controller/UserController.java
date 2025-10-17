@@ -25,10 +25,4 @@ public class UserController {
         return ApiResponse.success("Users fetched successfully",users);
     }
 
-    @PostMapping
-    public ApiResponse<User> create(@Valid @RequestBody User user){
-        User savedUser = userService.create(user);
-        return ApiResponse.success("Users created successfully",savedUser);
-    }
-
 }
