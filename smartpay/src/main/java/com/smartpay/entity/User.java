@@ -5,6 +5,10 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+import java.time.Instant;
+import java.util.List;
 
 @Entity
 @Data
@@ -25,9 +29,20 @@ public class User {
     private  String email;
 
     @NotBlank(message = "Password is required")
-    @Size(min=4,max=20,message = "Password must be between 4 and 20 characters")
+    @Size(min=4,max=255,message = "Password must be between 4 and 20 characters")
     private  String password;
 
     @NotBlank(message = "Role is required")
     private String role;
+
+    @CreationTimestamp
+    @Column(updatable = false)
+    private Instant createdAt;
+
+    @UpdateTimestamp
+    private Instant  updatedAt ;
+
+    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    private List<Transactions> transactions;
+
 }

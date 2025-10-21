@@ -3,7 +3,6 @@ package com.smartpay.controller;
 import com.smartpay.dto.ApiResponse;
 import com.smartpay.entity.User;
 import com.smartpay.service.UserService;
-import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;

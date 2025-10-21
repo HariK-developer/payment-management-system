@@ -29,7 +29,6 @@ public class AuthController {
     public ApiResponse<User> register(@RequestBody User user) {
         user.setPassword(encoder.encode(user.getPassword()));
         user.setRole("USER");
-
         User saved = userService.create(user);
         return ApiResponse.success("User registered successfully", saved);
     }

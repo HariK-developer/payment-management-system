@@ -1,6 +1,5 @@
 package com.smartpay.service;
 
-import com.smartpay.dto.ApiResponse;
 import com.smartpay.entity.User;
 import com.smartpay.repository.UserRepository;
 import org.springframework.stereotype.Service;
