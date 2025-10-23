@@ -1,6 +1,6 @@
 package com.smartpay.service;
 
-
+import com.smartpay.dto.TransactionCreateDto;
 import com.smartpay.entity.PaymentMethods;
 import com.smartpay.entity.Transactions;
 import com.smartpay.entity.User;
@@ -34,23 +34,32 @@ public class TransactionService {
         return transactionRepository.findAll();
     }
 
-    public Transactions createTransaction(Transactions transaction ) {
-        PaymentMethods method = transaction.getPaymentMethod();
+    public Transactions createTransaction(TransactionCreateDto transaction){
+        UUID paymentMethodId = UUID.fromString(transaction.getPaymentMethodId());
+        Long userId = transaction.getUserId();
+        BigDecimal amount = BigDecimal.valueOf(Long.parseLong(transaction.getAmount()));
+
+        PaymentMethods method = paymentMethodRepository.findById(paymentMethodId).orElseThrow(() -> new RuntimeException("Payment method not found"));
+        User user  = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User detail not found"));
 
         String lastCode = transactionRepository.findLastCodeByPaymentMethod(method.getId());
         int nextNumber = 1;
-        if (lastcode != null){
+
+        if(lastCode != null){
             String numericPart = lastCode.replaceAll("\\D+","");
-            nextNumber = Integer.parseInt(numericPart) + 1;
+            if (!numericPart.isEmpty()){
+                nextNumber = Integer.parseInt(numericPart)+ 1;
+            }
         }
 
-        String newCode = String.format("%s%04d", method.getPaymentMethodName().toUpperCase(), nextNumber);
-        transaction.setReferenceCode(newCode);
-        User user = userRepository.findById(user_id).orElseThrow(() -> new RuntimeException("Payment method not found"));
+        String newCode = String.format("%s%o4d",method.getPaymentMethodName().toUpperCase(),nextNumber);
+
         Transactions t = new Transactions();
         t.setPaymentMethod(method);
         t.setUser(user);
-        t.setAmount(BigDecimal.valueOf(200));
+        t.setAmount(amount);
+        t.setReferenceCode(newCode);
+
         return transactionRepository.save(t);
     }
 }

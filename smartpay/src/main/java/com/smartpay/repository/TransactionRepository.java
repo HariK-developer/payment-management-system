@@ -9,6 +9,6 @@ import java.util.UUID;
 
 public interface TransactionRepository extends JpaRepository<Transactions, UUID> {
 
-    @Query(value = "SELECT referenceCode FROM transactions  where payment_method_id = :paymentMethodId ORDER BY createdAt DESC LIMIT 1",nativeQuery = true)
+    @Query(value = "SELECT reference_code FROM transactions  where payment_method_id = :paymentMethodId ORDER BY created_at DESC LIMIT 1",nativeQuery = true)
     String findLastCodeByPaymentMethod(@Param("paymentMethodId") UUID paymentMethodId);
 }

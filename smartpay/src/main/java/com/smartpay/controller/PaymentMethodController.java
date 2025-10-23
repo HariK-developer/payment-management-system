@@ -17,7 +17,7 @@ import java.util.UUID;
 @RequestMapping("/api/payment-method")
 public class PaymentMethodController {
 
-    @Autowired
+//    @Autowired
     private final PaymentMethodService paymentMethodService;
 
     public PaymentMethodController(PaymentMethodService paymentMethodService){
